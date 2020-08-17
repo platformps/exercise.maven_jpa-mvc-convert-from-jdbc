@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
  */
 public interface JdbcRepositoryInterface<
         IdType extends Serializable,
-        EntityType extends EntityInterface> {
+        EntityType extends EntityInterface<IdType>>
+        extends RepositoryInterface<IdType, EntityType> {
     DatabaseConnectionInterface getDatabaseConnection();
 
     EntityType create(EntityType entity);

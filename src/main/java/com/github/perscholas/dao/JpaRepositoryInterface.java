@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
  */
 public interface JpaRepositoryInterface<
         IdType extends Serializable,
-        EntityType extends EntityInterface<IdType>> {
+        EntityType extends EntityInterface<IdType>>
+        extends RepositoryInterface<IdType, EntityType> {
 
     default EntityType create(EntityType entity) {
         getEntityManager().getTransaction().begin();
