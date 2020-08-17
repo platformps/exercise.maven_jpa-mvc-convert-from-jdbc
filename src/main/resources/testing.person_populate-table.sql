@@ -1,0 +1,11 @@
+INSERT INTO person (email, name, password) VALUES ('hluckham0@google.ru', 'Hazel Luckham', 'X1uZcoIh0dj');
+INSERT INTO person (email, name, password) VALUES ('sbowden1@yellowbook.com', 'Sonnnie Bowden', 'SJc4aWSU');
+INSERT INTO person (email, name, password) VALUES ('qllorens2@howstuffworks.com', 'Quillan Llorens', 'W6rJuxd');
+INSERT INTO person (email, name, password) VALUES ('cstartin3@flickr.com', 'Clem Startin', 'XYHzJ1S');
+INSERT INTO person (email, name, password) VALUES ('tattwool4@biglobe.ne.jp', 'Thornie Attwool', 'Hjt0SoVmuBz');
+INSERT INTO person (email, name, password) VALUES ('hguerre5@deviantart.com', 'Harcourt Guerre', 'OzcxzD1PGs');
+INSERT INTO person (email, name, password) VALUES ('htaffley6@columbia.edu', 'Holmes Taffley', 'xowtOQ');
+INSERT INTO person (email, name, password) VALUES ('aiannitti7@is.gd', 'Alexandra Iannitti', 'TWP4hf5j');
+INSERT INTO person (email, name, password) VALUES ('ljiroudek8@sitemeter.com', 'Laryssa Jiroudek', 'bXRoLUP');
+INSERT INTO person (email, name, password) VALUES ('cjaulme9@bing.com', 'Cahra Jaulme', 'FnVklVgC6r6');
+INSERT INTO person (email, name, password) VALUES ('leon', 'chris', 'hunter');
