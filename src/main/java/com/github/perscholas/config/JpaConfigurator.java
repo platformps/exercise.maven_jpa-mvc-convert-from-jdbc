@@ -1,4 +1,4 @@
-package com.github.perscholas;
+package com.github.perscholas.config;
 
 import com.github.perscholas.dao.PersonJpaRepository;
 import com.github.perscholas.model.Person;

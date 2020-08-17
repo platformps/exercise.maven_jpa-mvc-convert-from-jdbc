@@ -1,5 +1,8 @@
 package com.github.perscholas;
 
+import com.github.perscholas.config.JdbcConfigurator;
+import com.github.perscholas.config.JpaConfigurator;
+
 /**
  * Created by leon on 8/13/2020.
  */

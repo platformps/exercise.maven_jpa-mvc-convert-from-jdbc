@@ -1,5 +1,7 @@
-package com.github.perscholas;
+package com.github.perscholas.config;
 
+import com.github.perscholas.DatabaseConnection;
+import com.github.perscholas.DatabaseConnectionInterface;
 import com.github.perscholas.dao.PersonJpaRepository;
 import com.github.perscholas.model.Person;
 import com.github.perscholas.utils.DirectoryReference;

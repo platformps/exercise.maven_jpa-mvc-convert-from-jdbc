@@ -1,7 +1,7 @@
 package com.github.perscholas.personservice;
 
 import com.github.perscholas.DatabaseConnection;
-import com.github.perscholas.JdbcConfigurator;
+import com.github.perscholas.config.JdbcConfigurator;
 import com.github.perscholas.dao.PersonJdbcRepository;
 import com.github.perscholas.model.Person;
 import com.github.perscholas.service.PersonService;
