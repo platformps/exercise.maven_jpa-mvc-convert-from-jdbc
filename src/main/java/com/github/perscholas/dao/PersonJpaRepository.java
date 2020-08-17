@@ -8,14 +8,11 @@ import javax.persistence.EntityManager;
 /**
  * Created by leon on 8/17/2020.
  */
-public enum PersonJpaRepository implements JpaRepositoryInterface<Long, Person> {
-    PRODUCTION;
-
+public class PersonJpaRepository extends AbstractJpaRepository<Long, Person> {
     private EntityManager entityManager;
 
-    @Override
-    public String getPersistenceUnitName() {
-        return name().toLowerCase();
+    public PersonJpaRepository(String persistenceUnitName) {
+        super(persistenceUnitName);
     }
 
     @Override

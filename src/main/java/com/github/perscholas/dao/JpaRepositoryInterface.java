@@ -12,8 +12,6 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Created by leon on 8/17/2020.
@@ -39,30 +37,22 @@ public interface JpaRepositoryInterface<
         return allQuery.getResultList();
     }
 
-    EntityType update(EntityType dataToBeUpdated, EntityType newEntityData);
-
-    default EntityType deleteById(IdType id) {
-        return delete(findById(id).get());
-    }
-
     default EntityType delete(EntityType entityToBeDeleted) {
         getEntityManager().remove(entityToBeDeleted);
         return entityToBeDeleted;
-    }
-
-    default List<EntityType> findAllWhere(Predicate<EntityType> filterClause) {
-        return findAll()
-                .stream()
-                .filter(filterClause)
-                .collect(Collectors.toList());
     }
 
     default Optional<EntityType> findById(IdType id) {
         return Optional.of(getEntityManager().find(getEntityClass(), id));
     }
 
-    default EntityType updateById(IdType id, EntityType newEntityData) {
-        return update(findById(id).get(), newEntityData);
+    default void close() {
+        getEntityManager().close();
+        getEntityManagerFactory().close();
+    }
+
+    default EntityManagerFactory getEntityManagerFactory() {
+        return Persistence.createEntityManagerFactory(getPersistenceUnitName());
     }
 
     Class<EntityType> getEntityClass();
@@ -71,12 +61,4 @@ public interface JpaRepositoryInterface<
 
     EntityManager getEntityManager();
 
-    default EntityManagerFactory getEntityManagerFactory() {
-        return Persistence.createEntityManagerFactory(getPersistenceUnitName());
-    }
-
-    default void close() {
-        getEntityManager().close();
-        getEntityManagerFactory().close();
-    }
 }

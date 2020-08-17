@@ -1,17 +1,20 @@
-package com.github.perscholas.personcontroller;
+package com.github.perscholas.jdbc.personrepository;
 
 import com.github.perscholas.DatabaseConnection;
 import com.github.perscholas.config.JdbcConfigurator;
-import com.github.perscholas.controllers.PersonController;
 import com.github.perscholas.dao.PersonJdbcRepository;
-import com.github.perscholas.service.PersonService;
+import com.github.perscholas.dao.RepositoryInterface;
+import com.github.perscholas.model.Person;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * Created by leon on 8/14/2020.
  */
-public class DisplayAllTest {
+public class FindAllTest {
     private DatabaseConnection databaseConnection;
 
     @Before
@@ -27,12 +30,12 @@ public class DisplayAllTest {
     @Test
     public void test() {
         // given
-        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(databaseConnection)));
+        RepositoryInterface<Long, Person> repository = new PersonJdbcRepository(databaseConnection);
 
         // when
-        personController.displayAll();
+        List<Person> personList = repository.findAll();
 
         // then
-
+        Assert.assertFalse(personList.isEmpty());
     }
 }

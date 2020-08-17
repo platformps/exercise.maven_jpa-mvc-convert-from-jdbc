@@ -15,7 +15,6 @@ public class JpaConfigurator {
 
     public void initialize() {
         jdbcConfigurator.initialize();
-        PersonJpaRepository.PRODUCTION.create(new Person());
     }
 
 }

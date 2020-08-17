@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Created by leon on 8/17/2020.
@@ -23,13 +24,32 @@ public interface RepositoryInterface<
 
     EntityType delete(EntityType entity);
 
-    EntityType deleteById(IdType id);
+    default EntityType deleteById(IdType id) {
+        return delete(findById(id).get());
+    }
 
-    List<EntityType> findAllWhere(Predicate<EntityType> filterClause);
+    default List<EntityType> findAllWhere(Predicate<EntityType> filterClause) {
+        return findAll()
+                .stream()
+                .filter(filterClause)
+                .collect(Collectors.toList());
+    }
 
-    Optional<EntityType> findById(IdType id);
+    default Optional<EntityType> findById(IdType id) {
+        return Optional.of(findAllWhere(entity -> entity.getId().equals(id)).get(0));
+    }
 
-    EntityType updateById(IdType id, EntityType newData);
+    default EntityType updateById(IdType id, EntityType newData) {
+        return updateAllWhere(
+                entityToBeEvaluated -> entityToBeEvaluated.getId().equals(id),
+                matchedEntity -> update(matchedEntity, newData))
+                .get(0);
+    }
 
-    List<EntityType> updateAllWhere(Predicate<EntityType> filterClause, Function<EntityType, EntityType> updateFunction);
+    default List<EntityType> updateAllWhere(Predicate<EntityType> filterClause, Function<EntityType, EntityType> updateFunction) {
+        return findAllWhere(filterClause)
+                .stream()
+                .map(updateFunction::apply)
+                .collect(Collectors.toList());
+    }
 }

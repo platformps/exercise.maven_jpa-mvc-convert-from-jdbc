@@ -43,11 +43,6 @@ public class PersonJdbcRepository extends AbstractJdbcRepository<Long, Person> {
     }
 
     @Override
-    public void commit() {
-
-    }
-
-    @Override
     public Person delete(Person entity) {
         Long id = entity.getId();
         String statement = "DELETE FROM Person WHERE id = " + id + ";";
