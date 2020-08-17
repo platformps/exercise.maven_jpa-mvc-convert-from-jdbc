@@ -1,6 +1,6 @@
 package com.github.perscholas.service;
 
-import com.github.perscholas.dao.RepositoryInterface;
+import com.github.perscholas.dao.JdbcRepositoryInterface;
 import com.github.perscholas.model.EntityInterface;
 
 import java.io.Serializable;
@@ -12,7 +12,7 @@ import java.util.List;
 public interface ServiceInterface<
         IdType extends Serializable,
         EntityType extends EntityInterface<IdType>,
-        RepositoryType extends RepositoryInterface<IdType, EntityType>> {
+        RepositoryType extends JdbcRepositoryInterface<IdType, EntityType>> {
     RepositoryType getRepository();
 
     default List<EntityType> findAll() {
@@ -28,7 +28,7 @@ public interface ServiceInterface<
     }
 
     default EntityType delete(IdType id) {
-        return getRepository().delete(id);
+        return getRepository().deleteById(id);
     }
 
     default EntityType delete(EntityType entity) {

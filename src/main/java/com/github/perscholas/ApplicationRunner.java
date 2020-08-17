@@ -1,7 +1,7 @@
 package com.github.perscholas;
 
 import com.github.perscholas.controllers.PersonController;
-import com.github.perscholas.dao.PersonRepository;
+import com.github.perscholas.dao.PersonJdbcRepository;
 import com.github.perscholas.routers.ControllerRouter;
 import com.github.perscholas.service.PersonService;
 import com.github.perscholas.utils.IOConsole;
@@ -17,7 +17,7 @@ public class ApplicationRunner implements Runnable {
 
     @Override
     public void run() {
-        PersonController personController = new PersonController(new PersonService(new PersonRepository()));
+        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository()));
 
         String userInput;
         do {

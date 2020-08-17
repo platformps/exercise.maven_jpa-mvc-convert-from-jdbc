@@ -1,5 +1,6 @@
 package com.github.perscholas;
 
+import com.github.perscholas.dao.PersonJpaRepository;
 import com.github.perscholas.model.Person;
 import com.github.perscholas.utils.DirectoryReference;
 import com.github.perscholas.utils.FileReader;
@@ -35,7 +36,7 @@ public class JdbcConfigurator {
     }
 
     public void initialize() {
-        PersonDao.PRODUCTION.create(new Person());
+        PersonJpaRepository.PRODUCTION.create(new Person());
         scriptFiles.forEach(this::executeSqlFile);
     }
 

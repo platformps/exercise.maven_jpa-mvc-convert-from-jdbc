@@ -2,7 +2,7 @@ package com.github.perscholas.personrepository;
 
 import com.github.perscholas.DatabaseConnection;
 import com.github.perscholas.JdbcConfigurator;
-import com.github.perscholas.dao.PersonRepository;
+import com.github.perscholas.dao.PersonJdbcRepository;
 import com.github.perscholas.model.Person;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +29,7 @@ public class FindAllTest {
     @Test
     public void test() {
         // given
-        PersonRepository repository = new PersonRepository(databaseConnection);
+        PersonJdbcRepository repository = new PersonJdbcRepository(databaseConnection);
 
         // when
         List<Person> personList = repository.findAll();

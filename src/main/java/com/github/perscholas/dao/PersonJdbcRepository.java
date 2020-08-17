@@ -11,12 +11,12 @@ import java.util.List;
 /**
  * Created by leon on 8/13/2020.
  */ // TODO - extend `RepositoryInterface<Long, Person>`
-public class PersonRepository extends AbstractRepository<Long, Person> {
-    public PersonRepository(DatabaseConnectionInterface databaseConnection) {
+public class PersonJdbcRepository extends AbstractJdbcRepository<Long, Person> {
+    public PersonJdbcRepository(DatabaseConnectionInterface databaseConnection) {
         super(databaseConnection);
     }
 
-    public PersonRepository() {
+    public PersonJdbcRepository() {
     }
 
     @Override

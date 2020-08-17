@@ -1,16 +1,14 @@
-package com.github.perscholas;
+package com.github.perscholas.dao;
 
 import com.github.perscholas.model.Person;
 import com.github.perscholas.model.PersonBuilder;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * Created by leon on 8/17/2020.
  */
-public enum PersonDao implements PersistentDaoInterface<Long, Person> {
+public enum PersonJpaRepository implements JpaRepositoryInterface<Long, Person> {
     PRODUCTION;
 
     private EntityManager entityManager;

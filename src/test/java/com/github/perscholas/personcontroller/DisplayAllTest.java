@@ -3,7 +3,7 @@ package com.github.perscholas.personcontroller;
 import com.github.perscholas.DatabaseConnection;
 import com.github.perscholas.JdbcConfigurator;
 import com.github.perscholas.controllers.PersonController;
-import com.github.perscholas.dao.PersonRepository;
+import com.github.perscholas.dao.PersonJdbcRepository;
 import com.github.perscholas.service.PersonService;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class DisplayAllTest {
     @Test
     public void test() {
         // given
-        PersonController personController = new PersonController(new PersonService(new PersonRepository(databaseConnection)));
+        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(databaseConnection)));
 
         // when
         personController.displayAll();

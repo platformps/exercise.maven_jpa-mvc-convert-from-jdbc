@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Created by leon on 8/14/2020.
  */
-public interface RepositoryInterface<
+public interface JdbcRepositoryInterface<
         IdType extends Serializable,
         EntityType extends EntityInterface> {
     DatabaseConnectionInterface getDatabaseConnection();
@@ -28,17 +28,15 @@ public interface RepositoryInterface<
 
     EntityType delete(EntityType entity);
 
-    void commit();
-
-    default EntityType delete(IdType id) {
+    default EntityType deleteById(IdType id) {
         return delete(findById(id).get());
     }
 
     default List<EntityType> findAllWhere(Predicate<EntityType> filterClause) {
-        return new ArrayList<>(findAll()
+        return findAll()
                 .stream()
                 .filter(filterClause)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     default Optional<EntityType> findById(IdType id) {
@@ -46,16 +44,18 @@ public interface RepositoryInterface<
     }
 
     default EntityType updateById(IdType id, EntityType newData) {
-        return updateWhere(
+        return updateAllWhere(
                 entityToBeEvaluated -> entityToBeEvaluated.getId().equals(id),
                 matchedEntity -> update(matchedEntity, newData))
                 .get(0);
     }
 
-    default List<EntityType> updateWhere(Predicate<EntityType> filterClause, Function<EntityType, EntityType> updateFunction) {
+    default List<EntityType> updateAllWhere(Predicate<EntityType> filterClause, Function<EntityType, EntityType> updateFunction) {
         return findAllWhere(filterClause)
                 .stream()
                 .map(updateFunction::apply)
                 .collect(Collectors.toList());
     }
+
+    void commit();
 }
