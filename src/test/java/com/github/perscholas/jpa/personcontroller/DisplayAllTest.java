@@ -30,7 +30,7 @@ public class DisplayAllTest {
     @Test
     public void test() {
         // given
-        PersonController personController = new PersonController(new PersonService(new PersonJpaRepository("production")));
+        PersonController personController = new PersonController(new PersonService(new PersonJpaRepository("testing")));
 
         // when
         personController.displayAll();

@@ -31,7 +31,7 @@ public class FindAllTest {
     @Test
     public void test() {
         // given
-        RepositoryInterface<Long, Person> repository = new PersonJpaRepository("production");
+        RepositoryInterface<Long, Person> repository = new PersonJpaRepository("testing");
 
         // when
         List<Person> personList = repository.findAll();

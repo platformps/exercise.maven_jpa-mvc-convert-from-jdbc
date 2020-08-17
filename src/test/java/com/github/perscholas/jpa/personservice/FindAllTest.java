@@ -31,7 +31,7 @@ public class FindAllTest {
     @Test
     public void test() {
         // given
-        PersonService personService = new PersonService(new PersonJpaRepository("production"));
+        PersonService personService = new PersonService(new PersonJpaRepository("testing"));
 
         // when
         List<Person> personList = personService.findAll();
