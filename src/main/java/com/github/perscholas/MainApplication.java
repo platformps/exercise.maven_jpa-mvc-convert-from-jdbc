@@ -6,9 +6,10 @@ package com.github.perscholas;
 public class MainApplication {
     public static void main(String[] args) {
         JdbcConfigurator configurator = new JdbcConfigurator(DatabaseConnection.PRODUCTION_DATABASE);
+        JpaConfigurator jpaConfigurator = new JpaConfigurator(configurator);
         configurator.appendSqlScript("production.person_create-table.sql");
-//        configurator.appendSqlScript("production.person_populate-table.sql");
-        configurator.initialize();
+        configurator.appendSqlScript("production.person_populate-table.sql");
+        jpaConfigurator.initialize();
         Runnable applicationRunner = new ApplicationRunner();
         applicationRunner.run();
     }

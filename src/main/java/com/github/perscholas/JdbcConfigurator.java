@@ -36,7 +36,9 @@ public class JdbcConfigurator {
     }
 
     public void initialize() {
-        PersonJpaRepository.PRODUCTION.create(new Person());
+        dbc.drop();
+        dbc.create();
+        dbc.use();
         scriptFiles.forEach(this::executeSqlFile);
     }
 
