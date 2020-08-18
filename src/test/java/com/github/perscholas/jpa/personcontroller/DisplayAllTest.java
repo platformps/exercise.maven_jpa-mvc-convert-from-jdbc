@@ -14,17 +14,14 @@ import org.junit.Test;
  * Created by leon on 8/14/2020.
  */
 public class DisplayAllTest {
-    private DatabaseConnection databaseConnection;
 
     @Before
     public void setup() {
         // given
-        this.databaseConnection = DatabaseConnection.TESTING_DATABASE;
-        JdbcConfigurator configurator = new JdbcConfigurator(databaseConnection);
-        JpaConfigurator jpaConfigurator = new JpaConfigurator(configurator);
+        JpaConfigurator configurator = new JpaConfigurator("testing");
         configurator.appendSqlScript("testing.person_create-table.sql");
         configurator.appendSqlScript("testing.person_populate-table.sql");
-        jpaConfigurator.initialize();
+        configurator.initialize();
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.github.perscholas;
 
-import com.github.perscholas.config.JdbcConfigurator;
+import com.github.perscholas.config.ConfigurationInterface;
 import com.github.perscholas.config.JpaConfigurator;
 
 /**
@@ -8,11 +8,10 @@ import com.github.perscholas.config.JpaConfigurator;
  */
 public class MainApplication {
     public static void main(String[] args) {
-        JdbcConfigurator configurator = new JdbcConfigurator(DatabaseConnection.PRODUCTION_DATABASE);
-        JpaConfigurator jpaConfigurator = new JpaConfigurator(configurator);
-        configurator.appendSqlScript("production.person_create-table.sql");
-        configurator.appendSqlScript("production.person_populate-table.sql");
-        jpaConfigurator.initialize();
+        ConfigurationInterface config = new JpaConfigurator("production");
+        config.appendSqlScript("production.person_create-table.sql");
+        config.appendSqlScript("production.person_populate-table.sql");
+        config.initialize();
         Runnable applicationRunner = new ApplicationRunner();
         applicationRunner.run();
     }

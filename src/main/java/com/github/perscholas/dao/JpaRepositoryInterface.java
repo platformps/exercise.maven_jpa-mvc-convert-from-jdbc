@@ -55,6 +55,10 @@ public interface JpaRepositoryInterface<
         return Persistence.createEntityManagerFactory(getPersistenceUnitName());
     }
 
+    default List<EntityType> executeQuery(String sql) {
+        return getEntityManager().createQuery(sql).getResultList();
+    }
+
     Class<EntityType> getEntityClass();
 
     String getPersistenceUnitName();

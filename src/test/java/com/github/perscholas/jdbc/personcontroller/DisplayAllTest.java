@@ -1,6 +1,7 @@
 package com.github.perscholas.jdbc.personcontroller;
 
 import com.github.perscholas.DatabaseConnection;
+import com.github.perscholas.config.ConfigurationInterface;
 import com.github.perscholas.config.JdbcConfigurator;
 import com.github.perscholas.controllers.PersonController;
 import com.github.perscholas.dao.PersonJdbcRepository;
@@ -18,7 +19,7 @@ public class DisplayAllTest {
     public void setup() {
         // given
         this.databaseConnection = DatabaseConnection.TESTING_DATABASE;
-        JdbcConfigurator configurator = new JdbcConfigurator(databaseConnection);
+        ConfigurationInterface configurator = new JdbcConfigurator(databaseConnection);
         configurator.appendSqlScript("testing.person_create-table.sql");
         configurator.appendSqlScript("testing.person_populate-table.sql");
         configurator.initialize();
@@ -27,7 +28,7 @@ public class DisplayAllTest {
     @Test
     public void test() {
         // given
-        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(databaseConnection)));
+        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(DatabaseConnection.TESTING_DATABASE)));
 
         // when
         personController.displayAll();

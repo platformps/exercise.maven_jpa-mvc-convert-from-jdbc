@@ -1,5 +1,6 @@
 package com.github.perscholas.dao;
 
+import com.github.perscholas.DatabaseConnection;
 import com.github.perscholas.DatabaseConnectionInterface;
 import com.github.perscholas.orm.PersonOrm;
 import com.github.perscholas.model.Person;
@@ -17,6 +18,7 @@ public class PersonJdbcRepository extends AbstractJdbcRepository<Long, Person> {
     }
 
     public PersonJdbcRepository() {
+        this(DatabaseConnection.PRODUCTION_DATABASE);
     }
 
     @Override

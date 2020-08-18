@@ -21,10 +21,6 @@ public abstract class AbstractJdbcRepository<
         this.databaseConnection = databaseConnection;
     }
 
-    public AbstractJdbcRepository() {
-        this(DatabaseConnection.PRODUCTION_DATABASE);
-    }
-
     @Override
     public DatabaseConnectionInterface getDatabaseConnection() {
         return this.databaseConnection;

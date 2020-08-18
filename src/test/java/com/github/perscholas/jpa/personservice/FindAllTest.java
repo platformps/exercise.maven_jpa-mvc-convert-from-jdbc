@@ -1,8 +1,8 @@
 package com.github.perscholas.jpa.personservice;
 
 import com.github.perscholas.DatabaseConnection;
+import com.github.perscholas.config.ConfigurationInterface;
 import com.github.perscholas.config.JdbcConfigurator;
-import com.github.perscholas.dao.PersonJdbcRepository;
 import com.github.perscholas.dao.PersonJpaRepository;
 import com.github.perscholas.model.Person;
 import com.github.perscholas.service.PersonService;
@@ -22,7 +22,7 @@ public class FindAllTest {
     public void setup() {
         // given
         this.databaseConnection = DatabaseConnection.TESTING_DATABASE;
-        JdbcConfigurator configurator = new JdbcConfigurator(databaseConnection);
+        ConfigurationInterface configurator = new JdbcConfigurator(databaseConnection);
         configurator.appendSqlScript("testing.person_create-table.sql");
         configurator.appendSqlScript("testing.person_populate-table.sql");
         configurator.initialize();
