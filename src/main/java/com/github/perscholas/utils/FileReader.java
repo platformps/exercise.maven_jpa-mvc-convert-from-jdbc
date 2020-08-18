@@ -1,6 +1,7 @@
 package com.github.perscholas.utils;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
@@ -19,8 +20,8 @@ public class FileReader {
     @Override
     public String toString() {
         try {
-            byte[] readAllBytes = java.nio.file.Files.readAllBytes(Paths.get( filename ));
-            return new String( readAllBytes );
+            byte[] readAllBytes = Files.readAllBytes(Paths.get(filename));
+            return new String(readAllBytes);
         } catch (IOException e) {
             throw new Error(e);
         }

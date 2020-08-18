@@ -22,6 +22,9 @@ public class FindAllTest {
     public void setup() {
         // given
         this.databaseConnection = DatabaseConnection.TESTING_DATABASE;
+        databaseConnection.drop();
+        databaseConnection.create();
+        databaseConnection.use();
         ConfigurationInterface configurator = new JdbcConfigurator(databaseConnection);
         configurator.appendSqlScript("testing.person_create-table.sql");
         configurator.appendSqlScript("testing.person_populate-table.sql");

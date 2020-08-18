@@ -19,6 +19,9 @@ public class DisplayAllTest {
     public void setup() {
         // given
         this.databaseConnection = DatabaseConnection.TESTING_DATABASE;
+        databaseConnection.drop();
+        databaseConnection.create();
+        databaseConnection.use();
         ConfigurationInterface configurator = new JdbcConfigurator(databaseConnection);
         configurator.appendSqlScript("testing.person_create-table.sql");
         configurator.appendSqlScript("testing.person_populate-table.sql");
@@ -28,7 +31,7 @@ public class DisplayAllTest {
     @Test
     public void test() {
         // given
-        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(DatabaseConnection.TESTING_DATABASE)));
+        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(databaseConnection)));
 
         // when
         personController.displayAll();
