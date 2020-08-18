@@ -2,6 +2,8 @@ package com.github.perscholas.config;
 
 import org.mariadb.jdbc.Driver;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.sql.DriverManager;
@@ -25,13 +27,16 @@ public class JpaConfigurator extends AbstractConfiguration {
 
     @Override
     public void executeStatement(String statement, Object... arguments) {
-        Query query = Persistence
+        EntityManager em = Persistence
                 .createEntityManagerFactory(persistenceUnitName)
-                .createEntityManager()
-                .createNativeQuery(statement);
+                .createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createNativeQuery(statement);
         for (int argumentNumber = 1; argumentNumber < arguments.length + 1; argumentNumber++) {
             Object argument = arguments[argumentNumber - 1];
             query.setParameter(argumentNumber, argument);
         }
+        query.executeUpdate();
+        em.getTransaction().commit();
     }
 }
