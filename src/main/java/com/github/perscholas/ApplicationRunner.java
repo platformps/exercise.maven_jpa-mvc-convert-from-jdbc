@@ -20,6 +20,7 @@ public class ApplicationRunner implements Runnable {
     @Override
     public void run() {
         PersonController personController = new PersonController(new PersonService(new PersonJpaRepository("production")));
+//        PersonController personController = new PersonController(new PersonService(new PersonJdbcRepository(DatabaseConnection.PRODUCTION_DATABASE));
 
         String userInput;
         do {
