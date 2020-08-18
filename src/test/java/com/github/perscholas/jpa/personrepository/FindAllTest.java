@@ -21,6 +21,8 @@ public class FindAllTest {
     @Before
     public void setup() {
         // given
+        DatabaseConnection.TESTING_DATABASE.drop(); // TODO - configure in `persistence.xml`
+        DatabaseConnection.TESTING_DATABASE.create(); // TODO - configure in `persistence.xml`
         JpaConfigurator configurator = new JpaConfigurator("testing");
         configurator.appendSqlScript("testing.person_create-table.sql");
         configurator.appendSqlScript("testing.person_populate-table.sql");

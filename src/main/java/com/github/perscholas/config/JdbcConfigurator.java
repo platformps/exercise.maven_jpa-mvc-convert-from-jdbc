@@ -13,10 +13,6 @@ import java.sql.SQLException;
 public class JdbcConfigurator extends AbstractConfiguration {
     private final DatabaseConnectionInterface dbc;
 
-    public JdbcConfigurator() {
-        this(DatabaseConnection.PRODUCTION_DATABASE);
-    }
-
     public JdbcConfigurator(DatabaseConnectionInterface databaseConnection, String... scriptFiles) {
         super(scriptFiles);
         try { // Attempt to register JDBC Driver
