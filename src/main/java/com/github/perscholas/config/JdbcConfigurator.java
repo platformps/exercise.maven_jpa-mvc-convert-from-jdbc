@@ -1,6 +1,5 @@
 package com.github.perscholas.config;
 
-import com.github.perscholas.DatabaseConnection;
 import com.github.perscholas.DatabaseConnectionInterface;
 import org.mariadb.jdbc.Driver;
 

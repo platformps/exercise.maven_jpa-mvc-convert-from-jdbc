@@ -4,7 +4,6 @@ import com.github.perscholas.utils.ConnectionBuilder;
 import com.github.perscholas.utils.IOConsole;
 
 import java.sql.*;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by leon on 2/18/2020.
@@ -24,7 +23,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
             .setDatabaseVendor("mariadb")
             .setHost("127.0.0.1"));
 
-    private static final IOConsole successConsole = new IOConsole(IOConsole.AnsiColor.CYAN);
+    private static final IOConsole console = new IOConsole(IOConsole.AnsiColor.CYAN);
     private volatile ConnectionBuilder connectionBuilder;
 
     DatabaseConnection(ConnectionBuilder connectionBuilder) {
@@ -56,7 +55,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
                     .prepareStatement(sqlStatement)
                     .execute();
             String successMessage = String.format("Successfully executed statement \n\t`%s`", sqlStatement);
-            successConsole.println(successMessage);
+            console.println(successMessage);
         } catch (SQLException e) {
             throw new Error(e);
         }
@@ -70,7 +69,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
                     .prepareStatement(sqlStatement)
                     .execute();
             String successMessage = String.format("Successfully executed statement \n\t`%s`", sqlStatement);
-            successConsole.println(successMessage);
+            console.println(successMessage);
         } catch (SQLException e) {
             String errorMessage = String.format("Failed to connect to execute statement\n\t`%s`", sqlStatement);
             throw new Error(errorMessage, e);
@@ -85,7 +84,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
                     .prepareStatement(sqlStatement)
                     .execute();
             String successMessage = String.format("Successfully executed statement \n\t`%s`", sqlStatement);
-            successConsole.println(successMessage);
+            console.println(successMessage);
         } catch (SQLException e) {
             throw new Error(e);
         }
@@ -97,7 +96,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
             sqlStatement = sqlStatement.trim();
             getScrollableStatement().execute(sqlStatement);
             String successMessage = String.format("Successfully executed statement \n\t`%s`", sqlStatement);
-            successConsole.println(successMessage);
+            console.println(successMessage);
         } catch (SQLException e) {
             String errorMessage = String.format("Failed to execute statement \n\t`%s`", sqlStatement);
             throw new Error(errorMessage, e);
@@ -110,7 +109,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
             sqlQuery = sqlQuery.trim();
             ResultSet result = getScrollableStatement().executeQuery(sqlQuery);
             String successMessage = String.format("Successfully executed query \n\t`%s`", sqlQuery);
-            successConsole.println(successMessage);
+            console.println(successMessage);
             return result;
         } catch (SQLException e) {
             String errorMessage = String.format("Failed to execute query \n\t`%s`", sqlQuery);
@@ -118,7 +117,7 @@ public enum DatabaseConnection implements DatabaseConnectionInterface {
         }
     }
 
-    private Statement getScrollableStatement() {
+    public Statement getScrollableStatement() {
         int resultSetType = ResultSet.TYPE_SCROLL_INSENSITIVE;
         int resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
         try {

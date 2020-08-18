@@ -52,5 +52,4 @@ public class PersonJdbcRepository extends AbstractJdbcRepository<Long, Person> {
         getDatabaseConnection().executeStatement(statement);
         return person;
     }
-
 }

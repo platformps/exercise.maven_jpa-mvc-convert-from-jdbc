@@ -10,8 +10,12 @@ import java.util.logging.Logger;
  * Created by leon on 8/17/2020.
  */
 public interface Loggable {
+    default Logger getLogger() {
+        return Logger.getLogger(getClass().getSimpleName());
+    }
+
     default void log(Level level, String message, Object... args) {
-        Logger.getLogger(getClass().getSimpleName()).log(level, String.format(message, args));
+       getLogger().log(level, String.format(message, args));
     }
 
     default void info(String message, Object... args) {

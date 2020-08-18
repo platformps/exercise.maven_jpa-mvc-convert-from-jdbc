@@ -64,5 +64,4 @@ public interface JpaRepositoryInterface<
     String getPersistenceUnitName();
 
     EntityManager getEntityManager();
-
 }
